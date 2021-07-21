@@ -1,0 +1,8 @@
+prefix=/home/chanis/rm2021_summer_camp/install
+
+Name: chanis
+Description: Description of chanis
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

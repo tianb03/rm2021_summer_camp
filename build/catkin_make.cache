@@ -1,0 +1,2 @@
+chanis
+-DCATKIN_DEVEL_PREFIX=/home/chanis/rm2021_summer_camp/devel -DCMAKE_INSTALL_PREFIX=/home/chanis/rm2021_summer_camp/install -G Unix Makefiles

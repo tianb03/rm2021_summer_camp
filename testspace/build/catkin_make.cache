@@ -1,0 +1,2 @@
+learning_topic
+-DCATKIN_DEVEL_PREFIX=/home/hsk/ros/testspace/devel -DCMAKE_INSTALL_PREFIX=/home/hsk/ros/testspace/install -G Unix Makefiles

@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   turtlesim
   tf
+  nav_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -158,6 +159,9 @@ target_link_libraries(turtle_tf_broadcaster ${catkin_LIBRARIES})
 
 add_executable(turtle_tf_listener src/listener.cpp)
 target_link_libraries(turtle_tf_listener ${catkin_LIBRARIES})
+
+add_executable(my_odom src/odom.cpp)
+target_link_libraries(my_odom ${catkin_LIBRARIES})
 
 #############
 ## Install ##

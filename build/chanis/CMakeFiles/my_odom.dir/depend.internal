@@ -102,5 +102,6 @@ chanis/CMakeFiles/my_odom.dir/src/odom.cpp.o
  /opt/ros/noetic/include/tf2_ros/buffer.h
  /opt/ros/noetic/include/tf2_ros/buffer_interface.h
  /opt/ros/noetic/include/tf2_ros/transform_broadcaster.h
+ /opt/ros/noetic/include/turtlesim/Pose.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h

@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node" />
+	<node pkg="chanis" type="my_odom" name="odometry" args="turtle1" output="screen" />
+</launch>

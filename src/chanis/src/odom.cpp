@@ -1,20 +1,19 @@
 #include<ros/ros.h>
 #include<tf/transform_broadcaster.h>
 #include<nav_msgs/Odometry.h>
+#include<turtlesim/Pose.h>
+double x, y, th, vx, vy, vth;
+ros::Time current_time, last_time;
+void Callback(const turtlesim::PoseConstPtr& msg){
+	vx = msg -> x, vy = msg -> y, vth = msg -> theta;
+}
 int main(int argc, char** argv){
-  ros::init(argc, argv, "odometry_publisher");
+  ros::init(argc, argv, "odometry");
   ros::NodeHandle n;
-  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
+	ros::Subscriber sub = n.subscribe("/turtle1/pose", 10, &Callback);
+	ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("/turtle1/odom", 50);
   tf::TransformBroadcaster odom_broadcaster;
-  double x = 0.0;
-  double y = 0.0;
-  double th = 0.0;
-  double vx = 0.1;
-  double vy = -0.1;
-  double vth = 0.1;
-  ros::Time current_time, last_time;
-  current_time = ros::Time::now();
-  last_time = ros::Time::now();
+  current_time = last_time = ros::Time::now();
   ros::Rate r(1.0);
   while(n.ok()){
     ros::spinOnce();
@@ -51,4 +50,6 @@ int main(int argc, char** argv){
     last_time = current_time;
     r.sleep();
   }
+	ros::spin();
+	return 0;
  }

@@ -18,17 +18,17 @@ def cmd_vel_cb(msg):
     global x
     global y
     global th
-    current_time = rospy.Time.now();
+    current_time = rospy.Time.now()
     odom = Odometry()
     odom.twist.twist = msg
     vx = msg.linear.x
     vy = msg.linear.y
     vth = msg.angular.z
 
-    dt = 0.1;
+    dt = 0.1
     delta_x = (vx * math.cos(th) - vy * math.sin(th)) * dt
     delta_y = (vx * math.sin(th) + vy * math.cos(th)) * dt
-    delta_th = vth * dt;
+    delta_th = vth * dt
 
     x += delta_x
     y += delta_y
@@ -48,7 +48,7 @@ def cmd_vel_cb(msg):
     odom.child_frame_id = "base_link"
 
     rospy.loginfo("call back")
-    pub.publish(odom);
+    pub.publish(odom)
 
 if __name__ == '__main__':
 

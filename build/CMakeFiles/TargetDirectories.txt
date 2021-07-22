@@ -40,9 +40,7 @@
 /home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/list_install_components.dir
 /home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/rebuild_cache.dir
 /home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/test.dir
-/home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/turtle_tf_listener.dir
-/home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/turtle_tf_broadcaster.dir
-/home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/my_odom.dir
+/home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/my_enc.dir
 /home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/std_srvs_generate_messages_lisp.dir
 /home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/std_srvs_generate_messages_eus.dir
 /home/chanis/rm2021_summer_camp/build/chanis/CMakeFiles/std_srvs_generate_messages_nodejs.dir

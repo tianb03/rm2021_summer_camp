@@ -1,0 +1,4 @@
+<launch>
+	<node name="rviz" pkg="rviz" type="rviz" args="/home/chanis/rm2021_summer_camp/src/chanis/config/enc.rviz" />
+	<node pkg="chanis" name="encOdom" type="my_enc" />
+</launch>

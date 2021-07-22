@@ -6,7 +6,7 @@ int main(int argc,char **argv)
     ros::NodeHandle n;
     ros::Publisher turtle;
     turtle = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel",10);
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(20);
     while (ros::ok())
     {
         /* code for loop body */

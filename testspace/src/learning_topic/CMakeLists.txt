@@ -154,7 +154,8 @@ include_directories(
 # )
 add_executable(vp src/vp.cpp)
 target_link_libraries(vp ${catkin_LIBRARIES})
-
+add_executable(lisiten src/lisiten.cpp)
+target_link_libraries(lisiten ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############

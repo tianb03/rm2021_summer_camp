@@ -131,7 +131,11 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/hsk/ros/testspace/build/gtest/cmake_install.cmake")
+  include("/home/hsk/ros/testspace/build/day2/cmake_install.cmake")
+  include("/home/hsk/ros/testspace/build/cv_tutorial/cmake_install.cmake")
+  include("/home/hsk/ros/testspace/build/turtle2_teleop/cmake_install.cmake")
   include("/home/hsk/ros/testspace/build/learning_topic/cmake_install.cmake")
+  include("/home/hsk/ros/testspace/build/usb_cam/cmake_install.cmake")
 
 endif()
 

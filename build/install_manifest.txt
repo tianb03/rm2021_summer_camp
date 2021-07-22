@@ -1,0 +1,13 @@
+/home/chanis/rm2021_summer_camp/install/_setup_util.py
+/home/chanis/rm2021_summer_camp/install/env.sh
+/home/chanis/rm2021_summer_camp/install/setup.bash
+/home/chanis/rm2021_summer_camp/install/local_setup.bash
+/home/chanis/rm2021_summer_camp/install/setup.sh
+/home/chanis/rm2021_summer_camp/install/local_setup.sh
+/home/chanis/rm2021_summer_camp/install/setup.zsh
+/home/chanis/rm2021_summer_camp/install/local_setup.zsh
+/home/chanis/rm2021_summer_camp/install/.rosinstall
+/home/chanis/rm2021_summer_camp/install/lib/pkgconfig/chanis.pc
+/home/chanis/rm2021_summer_camp/install/share/chanis/cmake/chanisConfig.cmake
+/home/chanis/rm2021_summer_camp/install/share/chanis/cmake/chanisConfig-version.cmake
+/home/chanis/rm2021_summer_camp/install/share/chanis/package.xml

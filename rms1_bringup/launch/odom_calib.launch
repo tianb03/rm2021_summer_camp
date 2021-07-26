@@ -1,0 +1,3 @@
+<launch>
+    <node pkg = "odom_calib" type="odom_calib_node" name="odom_calib" output="log"/>
+</launch>

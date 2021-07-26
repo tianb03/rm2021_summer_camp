@@ -1,0 +1,4 @@
+<launch>
+    <node pkg = "rms1_bringup" type="bringup.py" name="rms1_bringup" output="screen" />
+
+</launch>

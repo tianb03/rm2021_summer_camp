@@ -1,0 +1,10 @@
+<launch>
+    <node pkg = "odom_calib" type="odom_calib_node" name="odom_calib" output="log"/>
+    
+    <!-- Run the planning nodes -->
+    <include file="$(find odom_calib)/launch/planner.launch" />
+    
+    <!-- Run the detecting nodes -->
+    <include file="$(find odom_calib)/launch/detecting.launch" />
+
+</launch>

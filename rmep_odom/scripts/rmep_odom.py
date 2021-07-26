@@ -12,13 +12,14 @@ from tf.transformations import quaternion_from_euler
 if __name__ == '__main__':
     rp = rospkg.RosPack()
     pkg_path = rp.get_path("rmep_odom")
-    file_path = pkg_path + "/data/data.xlsx"
+    file_path = pkg_path + "/data/ep_enc.xlsx"
     data = pd.read_excel(file_path)
 
     # init
     rospy.init_node('turtlesim_odom')
     odom_pub = rospy.Publisher("rmep/odom", Odometry, queue_size=10)
     path_pub = rospy.Publisher("rmep/path", Path, queue_size=10)
+    pose_pub = rospy.Publisher("rmep/pose", PoseStamped, queue_size=10)
     
     x = 0.0
     y = 0.0
@@ -28,29 +29,47 @@ if __name__ == '__main__':
     a = 0.10
     b = 0.10
 
-    odom = Odometry()
     path = Path()
-    pose_stamped = PoseStamped()
+
     # rate
     rate = rospy.Rate(100.0)
-    n = 2
+    n = 1
     while n < data.shape[0] and not rospy.is_shutdown():
-        t = n * 0.01
+        dt = 0.01
 
-        w0 = data.encoder1[n]
-        w1 = data.encoder2[n]
-        w2 = data.encoder3[n]
-        w3 = data.encoder4[n]
+        w0 = ( data.encoder1[n] - data.encoder1[n-1] )
+        if w0 > math.pi:
+            w0 = w0 - math.pi * 2
+        elif w0 < -math.pi:
+            w0 = w0 + math.pi * 2
+        w1 = data.encoder2[n] - data.encoder2[n-1]
+        if w1 > math.pi:
+            w1 = w1 - math.pi * 2
+        elif w1 < -math.pi:
+            w1 = w1 + math.pi * 2
+        w2 = data.encoder3[n] - data.encoder3[n-1]
+        if w2 > math.pi:
+            w2 = w2 - math.pi * 2
+        elif w2 < -math.pi:
+            w2 = w2 + math.pi * 2
+        w3 = data.encoder4[n] - data.encoder4[n-1]
+        if w3 > math.pi:
+            w3 = w3 - math.pi * 2
+        elif w3 < -math.pi:
+            w3 = w3 + math.pi * 2
 
-        vx = (-w0 + w1 + w2 - w3) * r / 4
-        vy = (-w0 - w1 + w2 + w3) * r / 4
-        vth = (-w0 - w1 - w2 - w3) * r / (4 * (a + b)) 
+        # vx = (-w0 + w1 + w2 - w3) * r / 4 / dt
+        # vy = (-w0 - w1 + w2 + w3) * r / 4 / dt
+        # vth = (-w0 - w1 - w2 - w3) * r / (4 * (a + b)) /dt 
 
+        vx = (w0 + w1 + w2 + w3) * r / 4 / dt
+        vy = (-w0 + w1 + w2 - w3) * r / 4 / dt
+        vth = (-w0 + w1 - w2 + w3) * r / (4 * (a + b)) /dt 
+        odom = Odometry() # can only be defined here inside the loop
         odom.twist.twist.linear.x = vx
         odom.twist.twist.linear.y = vy
         odom.twist.twist.angular.z = vth
 
-        dt = 0.01
         delta_x = (vx * math.cos(th) - vy * math.sin(th)) * dt
         delta_y = (vx * math.sin(th) + vy * math.cos(th)) * dt
         delta_th = vth * dt
@@ -62,6 +81,7 @@ if __name__ == '__main__':
         quat = quaternion_from_euler(0, 0, th)
         odom.header.stamp = rospy.Time.now()
         odom.header.frame_id = "odom"
+        odom.header.seq = n
 
         odom.pose.pose.position.x = x
         odom.pose.pose.position.y = y
@@ -71,20 +91,21 @@ if __name__ == '__main__':
         odom.pose.pose.orientation.z = quat[2]
         odom.pose.pose.orientation.w = quat[3]
         odom.child_frame_id = "base_link"
+
+        pose_stamped = PoseStamped()
         pose_stamped.pose = odom.pose.pose
-        pose_stamped.header.frame_id = "odom"
-        pose_stamped.header.stamp = odom.header.stamp
+        pose_stamped.header = odom.header
+
+        path.header = odom.header
         path.poses.append(pose_stamped)
-        rospy.loginfo("call back")
+
+        rospy.loginfo(len(path.poses))
         odom_pub.publish(odom)
-        
-        if n % 10 == 0:
-            path.header.frame_id = "odom"
-            path.header.stamp = rospy.Time.now()
+        # pose_pub.publish(path.poses)
+        if n % 10 == 0: 
             path_pub.publish(path)
 
         n = n + 1
         rate.sleep()
-
 
     rospy.spin()

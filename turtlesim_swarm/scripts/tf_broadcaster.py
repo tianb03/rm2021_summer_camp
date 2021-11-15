@@ -36,12 +36,12 @@ def handle_turtle_pose(msg, turtlename):
                      turtlename,
                      "world")
     if turtlename == "turtle1":
-        br21.sendTransform((-1, 1, 0),
+        br21.sendTransform((-1, -1, 0),
                         tf.transformations.quaternion_from_euler(0, 0, 0),
                         rospy.Time.now(),
                         "turtle2_target",
                         "turtle1")
-        br31.sendTransform((-1, -1, 0),
+        br31.sendTransform((-1, 1, 0),
                         tf.transformations.quaternion_from_euler(0, 0, 0),
                         rospy.Time.now(),
                         "turtle3_target",

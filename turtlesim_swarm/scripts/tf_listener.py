@@ -46,7 +46,7 @@ if __name__ == '__main__':
         turtle2_vel.publish(msg2)
 
         angular3 = 4 * math.atan2(trans3[1], trans3[0])
-        linear3 = 0.5 * math.sqrt(trans3[0] ** 2 + trans3[1] ** 2)
+        linear3 = 5 * math.sqrt(trans3[0] ** 2 + trans3[1] ** 2)
         msg3 = geometry_msgs.msg.Twist()
         msg3.linear.x = linear3
         msg3.angular.z = angular3
